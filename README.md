@@ -1,5 +1,5 @@
 # movinghome_bot
-This bot crawls rightmove.co.uk and scrapes the property data from particular places that I've specified in a hardcoded way at the moment. Currently this excludes new builds and returns the data sorted by newest listed. We're looking for a 3 bed, 1 bathroom house with a garden in particular villages in liverpool.
+This bot crawls rightmove.co.uk and scrapes the property data from particular places that I've specified in a hardcoded way at the moment. Currently this excludes new builds and returns the data sorted by newest listed. We're looking for a 3 bed, 1 bathroom house with a garden in particular villages in liverpool. All results are shown in the form of a telegram chat. 
 
 # setup
 You will need to add a JSON file at Data/config.json with the following JSON
