@@ -1,5 +1,19 @@
-class Criteria:
-    def __init__(self, place, searchType, locations, minBed, maxBed, minBathroom, maxBathroom,minPrice, maxPrice, newHome, propertyTypes, sort):
+class criteria:
+    def __init__(
+        self,
+        place,
+        searchType,
+        locations,
+        minBed,
+        maxBed,
+        minBathroom,
+        maxBathroom,
+        minPrice,
+        maxPrice,
+        newHome,
+        propertyTypes,
+        sort,
+    ):
         self.place = place
         self.searchType = searchType
         self.locations = locations

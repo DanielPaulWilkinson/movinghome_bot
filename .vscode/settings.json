@@ -1,0 +1,19 @@
+{
+    "cSpell.words": [
+        "Ainsdale",
+        "Aintree",
+        "Birkdale",
+        "dont",
+        "Formby",
+        "levelname",
+        "Maghull",
+        "Ormskirk",
+        "rightmove",
+        "seleniumwire",
+        "terranced"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    },
+}

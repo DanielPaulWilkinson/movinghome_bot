@@ -1,9 +1,12 @@
-class Property:
-    #begin using property and oop in this app
-    def __init__(self, address, isFeatured, beds, bathrooms, pictures, description):
+class property:
+    # begin using property and oop in this app
+    def __init__(self, price, address, beds, bathrooms, pictures, description, url):
         self.address = address
-        self.isFeatured = isFeatured
+        self.price = price
         self.beds = beds
         self.bathrooms = bathrooms
         self.pictures = pictures
-        self.description = self.description 
+        self.description = description
+        self.url = url
+        
+    
