@@ -1,8 +1,31 @@
+#!/usr/bin/env python3
 from telegram import Update
 from telegram.ext import ContextTypes
+from telegram.constants import ParseMode
+from telegram import Update
+from logger.logger import getMyLogger
+
+from services.telegram_message_service import start_message
+from html import escape
+
+logger = getMyLogger(__name__)
 
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    message = update.message
+    chat_id = message.chat.id
+
+    print(message)
+
+    logger.info(
+        "%s joined to chat %d (%s)"
+        % (
+            escape(message.from_user.first_name),
+            chat_id,
+            escape(message.text),
+        )
+    )
+
     await update.message.reply_text(
-        "Hey there, thanks for chatting with me! What can I do for you?"
+        text=start_message(message), parse_mode=ParseMode.HTML
     )

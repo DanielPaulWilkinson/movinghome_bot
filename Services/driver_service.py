@@ -5,6 +5,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from logger.logger import getMyLogger
+
+logger = getMyLogger(__name__)
 
 
 def Create():
@@ -29,36 +32,37 @@ def goto(driver: webdriver, url: str):
     return driver
 
 
-def getValue(
-    driver: webdriver, by: By, path: str, defaultValue: any, errorFriendlyName: str
+def get_element_text_from_path(
+    driver: webdriver, by: By, path: str, default_value: any, log_term: str
 ):
     try:
         return driver.find_element(by, path).text.strip()
     except:
-        return defaultValue
+        logger.log(0, log_term)
+        return default_value
 
 
-def getHTMLGroups(driver: webdriver, by: By, path: str, errorFriendlyName: str):
+def get_elements_from_path(driver: webdriver, by: By, path: str, log_term: str):
     try:
         return driver.find_elements(by, path)
     except:
-        print(errorFriendlyName)
+        logger.log(0, log_term)
 
 
-def getHTML(driver: webdriver, by: By, path: str, errorFriendlyName: str):
+def get_element(driver: webdriver, by: By, path: str, log_term: str):
     try:
         return driver.find_element(by, path)
     except:
-        print(errorFriendlyName)
+        logger.log(0, log_term)
 
 
-def waitForPageLoad(driver):
-    elementOnPage = EC.presence_of_element_located((By.TAG_NAME, "p"))
-    WebDriverWait(driver, timeout=3).until(elementOnPage)
+def page_load(driver):
+    element_on_page = EC.presence_of_element_located((By.TAG_NAME, "p"))
+    WebDriverWait(driver, timeout=3).until(element_on_page)
 
 
-def CreateSelect(driver, by, path, error):
+def create_select(driver, by, path, log_term):
     try:
-        return Select(getHTML(driver=driver, by=by, path=path, errorFriendlyName=error))
+        return Select(get_element(driver=driver, by=by, path=path, log_term=log_term))
     except:
-        print(error)
+        logger.log(0, log_term)

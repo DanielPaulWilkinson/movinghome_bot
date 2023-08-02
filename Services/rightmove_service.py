@@ -6,65 +6,76 @@ from services.driver_service import *
 from objects.property import property
 
 
+def processCard(card):
+    url = get_element(
+        card,
+        By.CSS_SELECTOR,
+        "div.propertyCard-description > a",
+        "Could not find PROPERTY_LINK info",
+    ).get_attribute("href")
+
+    price = get_element_text_from_path(
+        card, By.CLASS_NAME, "no price for card", "unknown", "No price"
+    )
+
+    address = get_element_text_from_path(
+        card,
+        By.CLASS_NAME,
+        "propertyCard-address",
+        "UNKNOWN",
+        "Could not find ADDRESS info",
+    )
+
+    propertyType = get_element_text_from_path(
+        card,
+        By.CSS_SELECTOR,
+        "div.property-information > span:nth-child(1)",
+        "UNKNOWN",
+        "Could not find PROPERTY_TYPE info",
+    )
+
+    bathroom = get_element_text_from_path(
+        driver=card,
+        by=By.CSS_SELECTOR,
+        path="div.propertyCard-details > a > div.property-information > span:nth-child(5)",
+        default_value="UNKNOWN",
+        log_term="Could not find BATHROOM info",
+    )
+
+    bedroom = get_element_text_from_path(
+        driver=card,
+        by=By.CSS_SELECTOR,
+        path="div.propertyCard-details > a > div.property-information > span:nth-child(2)",
+        default_value="UNKNOWN",
+        log_term="Could not find BATHROOM info",
+    )
+
+    return property(
+        address=address,
+        price=price,
+        beds=bedroom,
+        bathrooms=bathroom,
+        pictures="",
+        description="",
+        url=str(url),
+    )
+
+
 # scraping method
 def scrape_rightmove_properties(drive: webdriver, url: str):
     rows = []
     try:
         driver = goto(drive, url)
-        waitForPageLoad(driver)
-        pagination = CreateSelect(
+        page_load(driver)
+        pagination = create_select(
             driver, By.CLASS_NAME, "pagination-dropdown", "Could not find pagination"
         )
         for index in range(len(pagination.options)):
-            propertyCards = getHTMLGroups(
+            propertyCards = get_elements_from_path(
                 driver, By.CLASS_NAME, "propertyCard", "Could not find property cards"
             )
             for card in propertyCards:
-                price = getValue(
-                    card,
-                    By.CLASS_NAME,
-                    "propertyCard-price",
-                    "UNKNOWN",
-                    "Could not find ADDRESS info",
-                )
-                address = getValue(
-                    card,
-                    By.CLASS_NAME,
-                    "propertyCard-address",
-                    "UNKNOWN",
-                    "Could not find ADDRESS info",
-                )
-                propertyType = getValue(
-                    card,
-                    By.CSS_SELECTOR,
-                    "div.property-information > span:nth-child(1)",
-                    "UNKNOWN",
-                    "Could not find PROPERTY_TYPE info",
-                )
-                propertyLink = getHTML(
-                    card,
-                    By.CSS_SELECTOR,
-                    "div.propertyCard-description > a",
-                    "Could not find PROPERTY_LINK info",
-                ).get_attribute("href")
-                bathroom = getValue(
-                    driver=card,
-                    by=By.CSS_SELECTOR,
-                    path="div.propertyCard-details > a > div.property-information > span:nth-child(5)",
-                    defaultValue="UNKNOWN",
-                    errorFriendlyName="Could not find BATHROOM info",
-                )
-                rows.append(
-                    property(
-                        address=address,
-                        price=price,
-                        beds=0,
-                        bathrooms=bathroom,
-                        pictures="",
-                        description="",
-                        url=str(propertyLink),
-                    )
-                )
+                rows.append(processCard(card))
 
             if len(pagination.options) != 1:
                 pagination.select_by_index(index)
@@ -97,5 +108,10 @@ def generate_rightmove_urls(searchCriteria: criteria):
     for search_location in searchCriteria.locations:
         if search_location["active"] == 1:
             searchCriteria.place = search_location["code"]
-            urls.append(build_rightmove_url(searchCriteria))
+            urls.append(
+                {
+                    "name": search_location["name"],
+                    "url": build_rightmove_url(searchCriteria),
+                }
+            )
     return urls
