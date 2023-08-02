@@ -1,7 +1,7 @@
 {
   "config": {
-    "token": "6471518142:AAHWexJ3jqtOBqU-HF2fIf31SyluUdqJ2yw",
-    "name": "movinghome_bot",
+    "token": "-",
+    "name": "-",
     "properties_json": "data/properties.json",
     "search_criteria_json": "data/criteria.json",
     "debug_config": {
