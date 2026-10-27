@@ -1,21 +1,53 @@
 {
-  "locations": [
-    {
-      "name": "Selby",
-      "code": "",
-      "search_url": "",
-      "active": true
-    }
-  ],
   "min_beds": 3,
-  "max_beds": 4,
-  "min_bathrooms": 1,
-  "min_price": 100000,
-  "max_price": 200000,
-  "property_types": ["bungalow", "detached", "semi-detached", "terraced"],
-  "must_have": ["garden"],
-  "dont_show": ["newHome", "retirement", "sharedOwnership"],
-  "include_sstc": false,
+  "max_beds": 5,
+  "max_price": 230000,
+  "preferred_max_price": 210000,
   "deposit": 9000,
-  "min_deposit_pct": 5
+  "church": {
+    "name": "St James the Apostle, Selby",
+    "lat": 53.78252,
+    "lng": -1.07128
+  },
+  "tiers": {
+    "1": [
+      "Selby",
+      "Brayton"
+    ],
+    "2": [
+      "Thorpe Willoughby",
+      "Barlby",
+      "Osgodby",
+      "Hambleton",
+      "Camblesforth"
+    ],
+    "3": [
+      "Riccall",
+      "Carlton",
+      "Drax",
+      "Sherburn in Elmet"
+    ]
+  },
+  "mortgage": {
+    "rate_pct": 4.5,
+    "term_years": 30
+  },
+  "comparables": {
+    "postcode_districts": [
+      "YO8",
+      "YO19",
+      "DN14",
+      "LS25"
+    ],
+    "months": 24
+  },
+  "schools": {
+    "max_km": 3,
+    "count": 3
+  },
+  "_notes": {
+    "tiers": "Order of preference for church commute; tier 3 is flagged, not excluded.",
+    "mortgage": "Illustrative repayment only. Change rate_pct/term_years to match a real quote.",
+    "comparables": "Land Registry price-paid postcode districts to download (cached monthly)."
+  }
 }

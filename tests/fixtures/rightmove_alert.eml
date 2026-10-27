@@ -1,0 +1,82 @@
+From: Rightmove <alerts@example.invalid>
+To: daniel@example.invalid
+Subject: SYNTHETIC: new properties matching your alert
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="===============1623023017093373866=="
+
+--===============1623023017093373866==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+See HTML
+
+--===============1623023017093373866==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<!-- SYNTHETIC fixture modelled on a Rightmove "new properties" alert. Not a =
+real email. -->
+<html><head><style>.price{font-weight:bold}</style><title>Rightmove</title></=
+head>
+<body>
+<table width=3D"600"><tr><td>
+  <h1>4 new properties match your alert "Selby, within 5 miles"</h1>
+  <p>Hi Daniel, here are the latest properties for sale.</p>
+</td></tr>
+<tr><td>
+  <a href=3D"https://click.email.rightmove.co.uk/?qs=3Dredirect%3Dhttps%253A%=
+252F%252Fwww.rightmove.co.uk%252Fproperties%252F900000001%253Futm_source%253D=
+alert"><img src=3D"https://media.example/1.jpg" alt=3D"Property image"></a>
+  <p class=3D"price">=C2=A3205,000</p>
+  <p><a href=3D"https://click.email.rightmove.co.uk/?qs=3Dredirect%3Dhttps%25=
+3A%252F%252Fwww.rightmove.co.uk%252Fproperties%252F900000001">3 bedroom semi-=
+detached house for sale</a></p>
+  <p>Example Road, Selby, YO8 4HL</p>
+  <p>Added today</p>
+  <p>Freehold. South-facing rear garden, driveway for two cars. Recently refu=
+rbished kitchen. EPC Rating: C</p>
+  <p>Park Row Properties, Selby</p>
+</td></tr>
+<tr><td>
+  <a href=3D"https://www.rightmove.co.uk/properties/900000002#/?channel=3DRES=
+_BUY"><img src=3D"https://media.example/2.jpg" alt=3D""></a>
+  <p class=3D"price">=C2=A3225,000</p>
+  <p><a href=3D"https://www.rightmove.co.uk/properties/900000002">4 bedroom d=
+etached house for sale</a></p>
+  <p>Example Avenue, Barlby, Selby, YO8</p>
+  <p>Requires modernisation throughout. Garage and off-road parking. Large ga=
+rden. No onward chain. EPC Rating: E</p>
+</td></tr>
+<tr><td>
+  <a href=3D"https://click.email.rightmove.co.uk/?qs=3Dhttps%3A%2F%2Fwww.righ=
+tmove.co.uk%2Fproperties%2F900000003"><img src=3D"https://media.example/3.jpg=
+"></a>
+  <p>Reduced yesterday</p>
+  <p class=3D"price">=C2=A3199,950</p>
+  <p>3 bedroom terraced house for sale</p>
+  <p>Example Street, Riccall, York, YO19</p>
+  <p>Leasehold, 120 years remaining. Courtyard garden. On-street parking only=
+.</p>
+</td></tr>
+<tr><td>
+  <a href=3D"https://www.rightmove.co.uk/properties/900000004"><img src=3D"x.=
+jpg"></a>
+  <p class=3D"price">=C2=A3150,000</p><p>2 bedroom flat for sale</p><p>Exampl=
+e Court, Selby, YO8</p>
+</td></tr>
+<tr><td>
+  <a href=3D"https://www.rightmove.co.uk/properties/900000005"><img src=3D"x.=
+jpg"></a>
+  <p class=3D"price">=C2=A3265,000</p><p>4 bedroom detached house for sale</p=
+><p>Example Close, Brayton, Selby, YO8</p>
+</td></tr>
+<tr><td>
+  <p><a href=3D"https://www.rightmove.co.uk/alerts/edit">Edit this alert</a> =
+| <a href=3D"https://www.rightmove.co.uk/unsubscribe">Unsubscribe</a></p>
+  <p>Rightmove plc, 2 Caldecotte Lake Business Park, Milton Keynes</p>
+</td></tr>
+</table></body></html>
+
+--===============1623023017093373866==--
