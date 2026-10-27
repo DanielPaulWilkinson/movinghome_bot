@@ -1,0 +1,21 @@
+{
+  "locations": [
+    {
+      "name": "Selby",
+      "code": "",
+      "search_url": "",
+      "active": true
+    }
+  ],
+  "min_beds": 3,
+  "max_beds": 4,
+  "min_bathrooms": 1,
+  "min_price": 100000,
+  "max_price": 200000,
+  "property_types": ["bungalow", "detached", "semi-detached", "terraced"],
+  "must_have": ["garden"],
+  "dont_show": ["newHome", "retirement", "sharedOwnership"],
+  "include_sstc": false,
+  "deposit": 9000,
+  "min_deposit_pct": 5
+}
