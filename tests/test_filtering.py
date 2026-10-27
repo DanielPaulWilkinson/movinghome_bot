@@ -4,7 +4,7 @@ from services.filtering import is_affordable, matches, rejection_reasons
 
 
 def crit(**kw):
-    base = dict(locations=[], min_beds=3, max_beds=4, min_bathrooms=1, min_price=100000, max_price=200000)
+    base = dict(min_beds=3, max_beds=4, min_bathrooms=1, min_price=100000, max_price=200000)
     base.update(kw)
     return Criteria(**base)
 

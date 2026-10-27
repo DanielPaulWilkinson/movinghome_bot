@@ -57,10 +57,18 @@ class SeenStore:
             return PRICE_DROP
         return SEEN
 
-    def record(self, p: Property, save: bool = True):
-        self._data[p.listing_id] = {"url": p.url, "price": p.price}
+    def record(self, p: Property, save: bool = True, extra: Optional[Dict] = None):
+        """Remember a listing. `extra` (e.g. the enriched report row) is kept with it
+        so the report can show earlier finds without a separate database."""
+        entry = {"url": p.url, "price": p.price}
+        if extra is not None:
+            entry["extra"] = extra
+        self._data[p.listing_id] = entry
         if save:
             self._save()
+
+    def entries(self) -> Dict[str, Dict]:
+        return dict(self._data)
 
     def save(self):
         self._save()

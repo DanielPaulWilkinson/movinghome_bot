@@ -16,8 +16,6 @@ def _configure_root():
     if log_file:
         handlers.append(logging.FileHandler(log_file))
     logging.basicConfig(level=level, format=_LOG_FORMAT, handlers=handlers)
-    # httpx logs every Telegram poll at INFO, which drowns everything else.
-    logging.getLogger("httpx").setLevel(logging.WARNING)
     _configured = True
 
 

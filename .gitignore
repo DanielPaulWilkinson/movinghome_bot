@@ -164,3 +164,7 @@ data/seen.json
 data/properties.json
 data/config.json
 *.log
+# daily report: saved alert emails, outputs and cached public data
+inbox/
+reports/
+data/cache/
