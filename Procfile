@@ -1,1 +1,1 @@
-web: python movinghome_bot.py $PORT
+worker: python movinghome_bot.py
