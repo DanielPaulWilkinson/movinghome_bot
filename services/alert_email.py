@@ -44,6 +44,8 @@ _NOISE = re.compile(
     r"just added|reduced( today| yesterday)?|price reduced|featured property|property image|new property)$",
     re.I,
 )
+_SEARCH_SUMMARY = re.compile(r"\b(up to|from|within \d+ miles? of)\b.*£|properties for sale within", re.I)
+_AGENT = re.compile(r"^(marketed by|call:|email agent|email$|advertisement|photos|floorplan|\d+$|image$)", re.I)
 _SKIP_TAGS = {"style", "script", "head", "title"}
 _BLOCK_TAGS = {"p", "div", "td", "tr", "li", "br", "h1", "h2", "h3", "h4", "table", "span"}
 
@@ -113,8 +115,12 @@ def _tokens(html: str) -> List[Tuple[str, Optional[str]]]:
 def _blocks_by_link(tokens) -> List[Tuple[str, List[str]]]:
     blocks, current_id, texts = [], None, []
     for text, href in tokens:
+        # Header links such as "View all results" sit above the listings in
+        # newer templates: only treat footer text as the end once a listing began.
         if _FOOTER.search(text):
-            break
+            if current_id:
+                break
+            continue
         pid = property_id_from_href(href)
         if pid and pid != current_id and pid not in [b[0] for b in blocks]:
             if current_id:
@@ -137,6 +143,8 @@ def _blocks_by_price(tokens) -> List[Tuple[Optional[str], List[str]]]:
             break
         if not text:
             continue
+        if _SEARCH_SUMMARY.search(text):
+            continue  # the alert's search criteria, e.g. "up to £230,000"
         if _PRICE.search(text):
             blocks.append(pending + [text])
             pending = []
@@ -151,14 +159,16 @@ def _address(texts: List[str]) -> str:
     for t in texts:
         if _PRICE.search(t) or _BEDS.search(t) or _NOISE.match(t) or len(t) > 120:
             continue
-        if "," in t or _POSTCODE.search(t):
+        if _AGENT.match(t) or _SEARCH_SUMMARY.search(t):
+            continue
+        if "," in t or "~" in t or _POSTCODE.search(t):
             return t
     return ""
 
 
 def _parse_block(pid: Optional[str], texts: List[str]) -> Optional[Property]:
     reduced = any(re.search(r"\breduced\b|price (drop|change)", t, re.I) for t in texts)
-    texts = [t for t in texts if t and not _NOISE.match(t)] or texts
+    texts = [t for t in texts if t and not _NOISE.match(t) and not _SEARCH_SUMMARY.search(t)] or texts
     joined = " | ".join(texts)
     price = _PRICE.search(joined)
     if not price:
@@ -169,6 +179,8 @@ def _parse_block(pid: Optional[str], texts: List[str]) -> Optional[Property]:
         beds = parse_int(m.group(1))
         ptype = (m.group(2) or "").strip().rstrip("|").strip() or None
     address = _address(texts)
+    if "~" in address:
+        address = ", ".join(x.strip(" '\"") for x in address.split("~") if x.strip())
     alert_id = ""
     if not pid:
         key = re.sub(r"\W+", "", address.lower()) + f"|{beds}"
